@@ -1,4 +1,5 @@
-<script src="./App.ts"></script>
+<script src="./App.ts">
+</script>
 <template>
   <div
     id="app"
@@ -8,11 +9,13 @@
   >
     <main>
       <div class="search-box">
-        <input
+        <v-autocomplete
           type="text"
           class="search-bar"
           placeholder="Search..."
           v-model="query"
+          :loading="loading"
+          :items="weather.sys.country"
           @keydown="fetchWeather"
         />
       </div>
