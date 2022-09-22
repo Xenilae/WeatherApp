@@ -1,4 +1,4 @@
-<script src="./App.ts"></script>
+<script src="./show-weather.ts"></script>
 <template>
   <div
     id="app"
@@ -8,13 +8,11 @@
   >
     <main>
       <div class="search-box">
-        <v-autocomplete
+        <input
           type="text"
           class="search-bar"
           placeholder="Search..."
           v-model="query"
-          :loading="loading"
-          :items="weather.sys.country"
           @keydown="fetchWeather"
         />
       </div>
@@ -36,8 +34,7 @@
         class="weather-warning"
         v-else-if="typeof weather.main === 'undefined'"
       >
-        Type the name of the city you would like to see the weather, then press
-        enter
+        Name a city
       </div>
     </main>
   </div>
@@ -52,13 +49,13 @@ body {
   font-family: "montserrat", sans-serif;
 }
 #app {
-  background-image: url("./assets/cold-bg.jpg");
+  background-image: url("../assets/cold-bg.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
 #app.warm {
-  background-image: url("./assets/warm-bg.jpg");
+  background-image: url("../assets/warm-bg.jpg");
 }
 main {
   min-height: 100vh;
@@ -70,11 +67,15 @@ main {
   );
 }
 .search-box {
-  width: 100%;
-  margin-bottom: 30px;
+  width: 50%;
+  margin-bottom: 10px;
 }
 .search-box .search-bar {
+  top: 2vh;
+  left: 24vw;
+  align-self: center;
   display: block;
+  position: relative;
   width: 100%;
   padding: 15px;
   color: #313131;
@@ -92,6 +93,11 @@ main {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
 }
+.location-box {
+  position: relative;
+  left: 38vw;
+  top: 5vh;
+}
 .location-box .location {
   color: #fff;
   font-size: 32px;
@@ -108,15 +114,18 @@ main {
 }
 .weather-box {
   text-align: center;
+  position: relative;
+  left: 38vw;
+  bottom: 20vh;
 }
 .weather-box .temp {
   display: inline-block;
-  padding: 30px 25px;
+  bottom: 20px;
   color: #fff;
-  font-size: 102px;
+  font-size: 40px;
   font-weight: 900;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  margin: 30px 0;
+  margin: 10px 0;
 }
 .weather-box .weather {
   color: #fff;
@@ -128,7 +137,7 @@ main {
 .weather-warning {
   color: #fff;
   font-size: 50px;
-  font-weight: 900;
+  font-weight: 300;
   text-align: center;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }

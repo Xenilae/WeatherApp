@@ -8,9 +8,6 @@ export default defineComponent({
       api_key: "775703c427ebbbec12adddb1b10bb5b4",
       url_base: "https://api.openweathermap.org/data/2.5/",
       query: "",
-      loading: false,
-      search: null,
-      select: null,
       weather: {},
     };
   },
