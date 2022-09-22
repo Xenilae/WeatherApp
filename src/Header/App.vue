@@ -1,5 +1,4 @@
-<script src="./App.ts">
-</script>
+<script src="./App.ts"></script>
 <template>
   <div
     id="app"
