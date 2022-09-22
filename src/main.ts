@@ -1,5 +1,6 @@
 import { createApp } from "vue";
-import App from "./header/show-weather.vue";
+
+import App from "./components/show-weather.vue";
 // import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";

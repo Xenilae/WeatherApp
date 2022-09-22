@@ -19,6 +19,13 @@ export default defineComponent({
     query(newQuery) {
       localStorage.query = newQuery;
     },
+    showError(e) {
+      // eslint-disable-next-line no-empty
+      try {
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
   methods: {
     fetchWeather(e: { key: string }) {
@@ -29,7 +36,18 @@ export default defineComponent({
           .then((res) => {
             return res.json();
           })
-          .then(this.setResults);
+          .then(this.setResults)
+          .then(
+            (res) => {
+              console.log("ja");
+            },
+            (res) => {
+              if (res.status === 404) {
+                console.log("no");
+                console.log(res);
+              }
+            }
+          );
       }
     },
     setResults(results: number) {
@@ -84,15 +102,7 @@ export default defineComponent({
     </main>
   </div>
 </template>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: "montserrat", sans-serif;
-}
+<style scoped>
 #app {
   background-image: url("../assets/cold-bg.jpg");
   background-size: cover;
